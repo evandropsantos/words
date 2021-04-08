@@ -1,6 +1,10 @@
 const fs = require('fs')
 const path = require('path')
 
+function filterText (list, exp) {
+  return list.filter((element) => element.endsWith(exp))
+}
+
 function readFile (address) {
   return new Promise((resolve, reject) => {
     try {
@@ -26,6 +30,7 @@ function readFolder (address) {
 }
 
 module.exports = {
+  filterText,
   readFiles,
   readFolder
 }
