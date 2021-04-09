@@ -3,4 +3,8 @@ const fn = require('./functions')
 
 fn.readFolder(path.join(__dirname, 'subtitle'))
   .then((files) => fn.filterText(files, '.srt'))
+  .then((filesSRT) => fn.readFiles(filesSRT))
+  .then((list) => list.join('\n'))
+  .then((text) => text.split('\n'))
+  .then((list) => fn.cleanSpaces(list))
   .then(console.log)

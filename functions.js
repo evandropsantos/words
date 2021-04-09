@@ -1,6 +1,10 @@
 const fs = require('fs')
 const path = require('path')
 
+function cleanSpaces (list) {
+  return list.filter((item) => item.trim())
+}
+
 function filterText (list, exp) {
   return list.filter((element) => element.endsWith(exp))
 }
@@ -30,6 +34,7 @@ function readFolder (address) {
 }
 
 module.exports = {
+  cleanSpaces,
   filterText,
   readFiles,
   readFolder
