@@ -33,9 +33,14 @@ function readFolder (address) {
   })
 }
 
+function removeText (list, exp) {
+  return list.filter(item => !item.includes(exp))
+}
+
 module.exports = {
   cleanSpaces,
   filterText,
   readFiles,
-  readFolder
+  readFolder,
+  removeText
 }
