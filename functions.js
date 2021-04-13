@@ -5,6 +5,14 @@ function filterText (text) {
   return (list) => list.filter((element) => element.endsWith(text))
 }
 
+function merge (rule) {
+  return (element) => element.join(rule)
+}
+
+function part (rule) {
+  return (element) => element.split(rule)
+}
+
 function readFile (address) {
   return new Promise((resolve, reject) => {
     try {
@@ -58,6 +66,8 @@ function removeSymbols (symbols) {
 
 module.exports = {
   filterText,
+  merge,
+  part,
   readFiles,
   readFolder,
   removeClean,
