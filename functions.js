@@ -1,12 +1,8 @@
 const fs = require('fs')
 const path = require('path')
 
-function cleanSpaces (list) {
-  return list.filter((item) => item.trim())
-}
-
-function filterText (list, exp) {
-  return list.filter((element) => element.endsWith(exp))
+function filterText (text) {
+  return (list) => list.filter((element) => element.endsWith(text))
 }
 
 function readFile (address) {
@@ -33,14 +29,39 @@ function readFolder (address) {
   })
 }
 
-function removeText (list, exp) {
-  return list.filter(item => !item.includes(exp))
+function removeClean (list) {
+  return list.filter((item) => item.trim())
+}
+
+function removeNumbers (list) {
+  return list.filter((element) => {
+    const num = +element.trim()
+    return num !== num
+  })
+}
+
+function removeTexts (text) {
+  return (list) => list.filter(item => !item.includes(text))
+}
+
+function removeSymbols (symbols) {
+  return (list) => list.map((element) => {
+    let text = element
+    
+    symbols.forEach((symbol) => {
+      text = text.split(symbol).join('')
+    })
+
+    return text
+  })
 }
 
 module.exports = {
-  cleanSpaces,
   filterText,
   readFiles,
   readFolder,
-  removeText
+  removeClean,
+  removeNumbers,
+  removeTexts,
+  removeSymbols
 }
