@@ -4,6 +4,10 @@ const fn = require('./functions')
 const files = path.join(__dirname, 'subtitle')
 const symbols = ['.', '?', '-', '"', '♪', '_', '<i>', '</i>', '\r', '[', ']', '(', ')']
 
+function mergeWords () {
+  
+}
+
 fn.readFolder(files)
   .then(fn.filterText('.srt'))
   .then(fn.readFiles)
