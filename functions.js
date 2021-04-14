@@ -19,6 +19,15 @@ function mergeWords (words) {
   }, {}))
 }
 
+function orderWithNumber (element, order = 'asc') {
+  return function (list) {
+    const asc = (a, b) => a[element] - b[element]
+    const desc = (a, b) => b[element] - a[element]
+
+    return list.sort(order === 'asc' ? asc : desc)
+  }
+}
+
 function part (rule) {
   return (element) => element.split(rule)
 }
@@ -78,6 +87,7 @@ module.exports = {
   filterText,
   merge,
   mergeWords,
+  orderWithNumber,
   part,
   readFiles,
   readFolder,
