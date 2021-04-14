@@ -10,12 +10,13 @@ function merge (rule) {
 }
 
 function mergeWords (words) {
-  return words.reduce((acc, word) => {
-    const lowercaseWord = word.toLowerCase()
-    words[lowercaseWord] ? words[lowercaseWord] += 1 : words[lowercaseWord] = 1
+  return Object.values(words.reduce((acc, word) => {
+    const element = word.toLowerCase()
+    const quantity = acc[element] ? acc[element].quantity + 1 : 1
+    acc[element] = { element, quantity }
 
-    return words
-  }, {})
+    return acc
+  }, {}))
 }
 
 function part (rule) {
