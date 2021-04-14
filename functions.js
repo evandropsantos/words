@@ -72,15 +72,9 @@ function removeTexts (text) {
 }
 
 function removeSymbols (symbols) {
-  return (list) => list.map((element) => {
-    let text = element
-
-    symbols.forEach((symbol) => {
-      text = text.split(symbol).join('')
-    })
-
-    return text
-  })
+  return (list) => list.map((element) =>
+    symbols.reduce((acc, symbol) => acc.split(symbol).join(''), element)
+  )
 }
 
 module.exports = {
