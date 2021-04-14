@@ -9,6 +9,15 @@ function merge (rule) {
   return (element) => element.join(rule)
 }
 
+function mergeWords (words) {
+  return words.reduce((acc, word) => {
+    const lowercaseWord = word.toLowerCase()
+    words[lowercaseWord] ? words[lowercaseWord] += 1 : words[lowercaseWord] = 1
+
+    return words
+  }, {})
+}
+
 function part (rule) {
   return (element) => element.split(rule)
 }
@@ -38,18 +47,18 @@ function readFolder (address) {
 }
 
 function removeClean (list) {
-  return list.filter((item) => item.trim())
+  return list.filter((element) => element.trim())
 }
 
 function removeNumbers (list) {
   return list.filter((element) => {
-    const num = +element.trim()
+    const num = parseInt(element.trim())
     return num !== num
   })
 }
 
 function removeTexts (text) {
-  return (list) => list.filter(item => !item.includes(text))
+  return (list) => list.filter(element => !element.includes(text))
 }
 
 function removeSymbols (symbols) {
@@ -67,6 +76,7 @@ function removeSymbols (symbols) {
 module.exports = {
   filterText,
   merge,
+  mergeWords,
   part,
   readFiles,
   readFolder,
