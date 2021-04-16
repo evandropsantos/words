@@ -24,7 +24,7 @@ function orderWithNumber (element, order = 'asc') {
     const asc = (a, b) => a[element] - b[element]
     const desc = (a, b) => b[element] - a[element]
 
-    return list.sort(order === 'asc' ? asc : desc)
+    return [...list].sort(order === 'asc' ? asc : desc)
   }
 }
 
